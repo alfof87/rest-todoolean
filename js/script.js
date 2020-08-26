@@ -29,12 +29,15 @@ function printTasks(tasks){
     target.append(`<li>${task.text}</li>`);
   }
 }
+function addInsertListener(){
+  var btn = $("#btn");
+  btn.click(postElements);
+}
 
 function postElements(){
-  var btn = $("#btn");
   var inpText = $("#input-text");
-  var text = text.val();
-  console.log(valText);
+  var text = inpText.val();
+  console.log(text);
   $.ajax({
     url: "http://157.230.17.132:3008/todos",
     method:  "POST",
@@ -43,6 +46,7 @@ function postElements(){
     },
     success: function(data){
       console.log(data);
+      $("#tasks").append(text);
     },
     error: function(error){
       console.log("error");
@@ -52,6 +56,7 @@ function postElements(){
 
 
 function init(){
+addInsertListener();
 postElements();
 getElements();
 }
